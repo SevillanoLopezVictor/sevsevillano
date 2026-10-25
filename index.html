@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta name="robots" content="noindex">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sevillano | VHS Mixtape</title>
+  <meta name="description" content="VHS Mixtape, de Sevillano: 14 remixes para escuchar y descargar gratis en MP3 y WAV, dentro de una sala de VHS en 3D.">
+  <meta name="theme-color" content="#0b0907">
+  <link rel="canonical" href="https://sevsevillano.com/">
+  <link rel="icon" href="./favicon.ico" sizes="48x48">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <meta property="og:type" content="music.album">
+  <meta property="og:site_name" content="Sevillano">
+  <meta property="og:title" content="Sevillano | VHS Mixtape">
+  <meta property="og:description" content="14 remixes para escuchar y descargar gratis en MP3 y WAV.">
+  <meta property="og:url" content="https://sevsevillano.com/">
+  <meta property="og:image" content="https://sevsevillano.com/img/compartir.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "MusicAlbum", "name": "VHS Mixtape", "url": "https://sevsevillano.com/",
+   "byArtist": {"@type": "MusicGroup", "name": "Sevillano", "sameAs": ["https://www.instagram.com/sevsevillano/"]},
+   "numTracks": 14, "datePublished": "2026-09-22", "image": "https://sevsevillano.com/img/compartir.jpg"}
+  </script>
+  <script type="module" crossorigin src="./assets/main-fPzQm-Xj.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/espejo-DJh7ZRqq.js">
+  <link rel="stylesheet" crossorigin href="./assets/espejo-BUlc7GYt.css">
+  <link rel="stylesheet" crossorigin href="./assets/main-DofDPpmu.css">
+</head>
+<body>
+  <main id="tele">
+    <canvas id="escena" aria-hidden="true"></canvas>
+
+    <header class="osd osd-arriba">
+      <div class="osd-izquierda">
+        <span id="canal" class="canal">CH 01</span>
+        <button type="button" id="expulsar" class="expulsar" data-accion="expulsar"
+                aria-label="Cambiar de mixtape: volver a las teles"><span aria-hidden="true">&#9167;</span> CAMBIAR MIXTAPE</button>
+      </div>
+      <h1 class="rotulo">
+        <span>SEVILLANO</span>
+        <span class="rotulo-sub">VHS MIXTAPE</span>
+      </h1>
+    </header>
+
+    <p id="ayuda" class="osd osd-ayuda" aria-live="polite">PULSA EN EL DJ</p>
+
+    <nav id="acciones" class="osd osd-acciones">
+      <button type="button" data-accion="cabina" hidden>VOLVER A CABINA</button>
+      <button type="button" data-accion="pack" hidden aria-expanded="false">DESCARGAR MIXTAPE COMPLETA</button>
+    </nav>
+
+    <section id="pack" class="panel pack" hidden>
+      <p class="formatos-etiqueta">MIXTAPE COMPLETA, EN QUE FORMATO</p>
+      <p class="formatos-nota">14 TEMAS: 115 MB EN MP3, 800 MB EN WAV</p>
+      <div class="formatos-botones">
+        <button type="button" data-accion="bajar-pack" data-formato="mp3">MP3 320</button>
+        <button type="button" data-accion="bajar-pack" data-formato="wav">WAV</button>
+        <button type="button" data-accion="cerrar-pack">DEJARLO</button>
+      </div>
+      <div id="pack-wav" class="formatos" hidden>
+        <p class="formatos-etiqueta">EN WAV VA EN TRES PARTES</p>
+        <div class="formatos-botones">
+          <button type="button" data-accion="bajar-parte" data-parte="1">PARTE 1 · 01-05</button>
+          <button type="button" data-accion="bajar-parte" data-parte="2">PARTE 2 · 06-09</button>
+          <button type="button" data-accion="bajar-parte" data-parte="3">PARTE 3 · 10-14</button>
+        </div>
+      </div>
+      <p id="pack-estado" class="formatos-estado" aria-live="polite" hidden></p>
+    </section>
+
+    <aside id="ajustes" class="panel ajustes" hidden aria-labelledby="ajustes-titulo">
+      <button type="button" class="ajustes-cerrar" data-accion="cerrar-ajustes" aria-label="Cerrar ajustes">X</button>
+      <h2 id="ajustes-titulo">Ajustes</h2>
+      <p class="ajustes-fila">
+        <label for="volumen">VOLUMEN</label>
+        <input type="range" id="volumen" min="0" max="100" step="1" value="100">
+        <output id="volumen-valor" for="volumen">100</output>
+      </p>
+      <p class="ajustes-fila">
+        <span id="continua-etiqueta">REPRODUCCIÓN CONTINUA</span>
+        <button type="button" id="continua" data-accion="continua" role="switch" aria-checked="false"
+                aria-labelledby="continua-etiqueta">NO</button>
+      </p>
+      <p class="ajustes-nota">Al acabar un tema entra el siguiente de la cola, y al llegar al final vuelve a empezar.</p>
+      <p id="continua-aviso" class="ajustes-aviso" role="status" hidden></p>
+      <p class="formatos-etiqueta">COLA</p>
+      <ol id="cola" class="cola"></ol>
+      <div class="ficha-botones">
+        <button type="button" data-accion="cola-aleatoria">ALEATORIO</button>
+        <button type="button" data-accion="cola-disco">ORDEN DEL DISCO</button>
+        <button type="button" data-accion="cerrar-ajustes">CERRAR</button>
+      </div>
+      <div class="ficha-botones ajustes-legal">
+        <button type="button" data-accion="legal">AVISO LEGAL Y PRIVACIDAD</button>
+      </div>
+    </aside>
+
+    <aside id="legal" class="panel legal" hidden aria-labelledby="legal-titulo">
+      <button type="button" class="ajustes-cerrar" data-accion="cerrar-legal" aria-label="Volver a ajustes">X</button>
+      <h2 id="legal-titulo">Aviso legal y privacidad</h2>
+      <div class="legal-texto">
+        <p><strong>Qué es esto.</strong> VHS Mixtape es un proyecto personal de Sevillano. La música se escucha y se descarga gratis. No se vende nada, no hay publicidad y no se pide ningún dato para usar la web.</p>
+        <p><strong>Cookies.</strong> Esta web no usa cookies, ni propias ni de terceros, así que no hay banner que aceptar.</p>
+        <p><strong>Lo que guarda tu navegador.</strong> Solo tus ajustes: el volumen, el orden de la cola y si ya viste el aviso de Instagram. Se queda en tu dispositivo, no se envía a ningún sitio y desaparece si borras los datos del navegador.</p>
+        <p><strong>Visitas.</strong> Se cuentan con Cloudflare Web Analytics, que no pone cookies, no guarda nada en tu dispositivo, no te sigue por otras webs y solo da totales, como cuánta gente entra cada día o desde qué país.</p>
+        <p><strong>Alojamiento.</strong> La web y los archivos están en Cloudflare, que como cualquier servidor registra datos técnicos de las conexiones, incluida la dirección IP, para que la web funcione y esté protegida.</p>
+        <p><strong>Enlaces a otros sitios.</strong> Al pulsar los enlaces de Instagram, Spotify, SoundCloud o TikTok sales de esta web y pasas a sus condiciones y su tratamiento de datos.</p>
+        <p><strong>Música y derechos.</strong> Los temas son remixes y mashups hechos sin ánimo de lucro. Los derechos de las canciones originales son de sus autores y editoriales, y cada tema acredita a quien canta y a quien firma el original. Si eres titular de derechos de alguna de las obras y quieres que se retire un tema, escribe al correo de abajo y se quita.</p>
+        <p><strong>Contacto.</strong> sevillano.artist@gmail.com</p>
+        <p class="legal-fecha">Última actualización: septiembre de 2026.</p>
+      </div>
+      <div class="ficha-botones">
+        <button type="button" data-accion="cerrar-legal">VOLVER</button>
+      </div>
+    </aside>
+
+    <nav id="lateral" class="osd osd-lateral">
+      <button type="button" data-accion="enlaces">VER LINKS</button>
+      <button type="button" data-accion="estanteria">VER TEMAS</button>
+      <button type="button" id="ajustes-boton" class="osd-ajustes" data-accion="ajustes"
+            aria-expanded="false" aria-controls="ajustes" aria-label="Ajustes">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M12 8.6a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8Zm0 5.2a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6Z"/>
+        <path fill="currentColor" d="m20.3 13.1.1-1.1-.1-1.1 1.7-1.3-1.7-3-2 .7a7.6 7.6 0 0 0-1.9-1.1L16 4h-3.4l-.1.1H12l-.4 2.1a7.6 7.6 0 0 0-2 1.1l-2-.7-1.7 3 1.7 1.3-.1 1.1.1 1.1L6 14.4l1.7 3 2-.7c.6.5 1.2.8 2 1.1l.4 2.2h3.5l.4-2.2c.7-.3 1.3-.6 1.9-1.1l2 .7 1.7-3-1.7-1.3Zm-2.8 3.1-1.6-.5-.6.5c-.5.4-1 .7-1.6.9l-.7.2-.3 1.7h-1.4l-.3-1.7-.7-.2c-.6-.2-1.1-.5-1.6-.9l-.6-.5-1.6.5-.7-1.2 1.4-1v-.7l-.1-.9.1-.9v-.7l-1.4-1 .7-1.2 1.6.5.6-.5c.5-.4 1-.7 1.6-.9l.7-.2.3-1.7h1.4l.3 1.7.7.2c.6.2 1.1.5 1.6.9l.6.5 1.6-.5.7 1.2-1.4 1v.7l.1.9-.1.9v.7l1.4 1-.7 1.2Z"/>
+      </svg>
+    </button>
+    </nav>
+
+    <div id="pistas" class="pistas" aria-hidden="true">
+      <button type="button" class="pista" data-accion="enlaces" data-ancla="tele">
+        <span class="pista-texto">VER LINKS</span>
+        <span class="pista-flecha">&#9660;</span>
+      </button>
+      <button type="button" class="pista" data-accion="estanteria" data-ancla="estanteria">
+        <span class="pista-texto">VER TEMAS</span>
+        <span class="pista-flecha">&#9660;</span>
+      </button>
+    </div>
+
+    <aside id="enlaces" class="panel enlaces" hidden aria-labelledby="enlaces-titulo">
+      <h2 id="enlaces-titulo">Links</h2>
+      <ul id="enlaces-lista" class="enlaces-lista"></ul>
+      <div class="ficha-botones">
+        <button type="button" data-accion="cerrar">VOLVER</button>
+        <button type="button" data-accion="legal">AVISO LEGAL</button>
+      </div>
+    </aside>
+
+    <aside id="sobremi" class="panel sobremi" hidden aria-labelledby="sobremi-titulo">
+      <h2 id="sobremi-titulo">Sobre mí</h2>
+      <div id="sobremi-texto" class="sobremi-texto"></div>
+      <figure class="sobremi-firma">
+        <img class="sobremi-foto" src="./img/sevillano.jpg" alt="Sevillano pinchando" width="675" height="900" loading="lazy">
+        <figcaption>
+          <img class="sobremi-logo" src="./img/sevsev-blanco.png" alt="Sev Sev" width="1000" height="232" loading="lazy">
+          <span class="sobremi-credito">FOTO · @OTEGIX</span>
+        </figcaption>
+      </figure>
+      <p class="sobremi-contrataciones">Contrataciones: <a href="mailto:sevillano.artist@gmail.com">sevillano.artist@gmail.com</a></p>
+      <div class="ficha-botones">
+        <button type="button" data-accion="cerrar">VOLVER</button>
+      </div>
+    </aside>
+
+    <aside id="ficha" class="panel ficha" hidden aria-labelledby="ficha-titulo">
+      <p class="ficha-num" id="ficha-num">01</p>
+      <h2 id="ficha-titulo">Tema</h2>
+      <p class="ficha-etiqueta">CANTA</p>
+      <ul id="ficha-originales" class="ficha-originales"></ul>
+      <p class="ficha-etiqueta">PINCHA</p>
+      <p id="ficha-pincha" class="ficha-pincha"></p>
+      <dl class="ficha-datos">
+        <div><dt>BPM</dt><dd id="ficha-bpm"></dd></div>
+        <div><dt>TONO</dt><dd id="ficha-tono"></dd></div>
+        <div><dt>DURACIÓN</dt><dd id="ficha-duracion"></dd></div>
+        <div><dt>AÑO</dt><dd id="ficha-anio"></dd></div>
+      </dl>
+      <p id="ficha-creditos" class="ficha-creditos" hidden></p>
+      <div class="ficha-botones">
+        <button type="button" data-accion="pinchar">PINCHAR</button>
+        <button type="button" data-accion="voltear">VOLTEAR</button>
+        <button type="button" data-accion="descargar" aria-expanded="false">DESCARGAR</button>
+        <button type="button" data-accion="guardar">GUARDAR</button>
+      </div>
+      <div id="ficha-formatos" class="formatos" hidden>
+        <p class="formatos-etiqueta">EN QUE FORMATO</p>
+        <div class="formatos-botones">
+          <button type="button" data-accion="bajar-tema" data-formato="mp3">MP3 320</button>
+          <button type="button" data-accion="bajar-tema" data-formato="wav">WAV</button>
+        </div>
+        <p id="ficha-descarga-estado" class="formatos-estado" aria-live="polite" hidden></p>
+      </div>
+    </aside>
+
+    <section id="sonando" class="panel sonando" hidden aria-live="polite">
+      <p class="sonando-etiqueta"><span id="sonando-estado">SONANDO</span> <span id="sonando-titulo"></span></p>
+      <div id="barra" class="barra" role="slider" tabindex="0" aria-label="Posicion del tema"
+           aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="sonando-progreso" class="barra-relleno"></div>
+        <div class="barra-aguja"></div>
+      </div>
+      <div class="sonando-botones">
+        <button type="button" data-accion="parar">PARAR</button>
+        <button type="button" data-accion="quitar">QUITAR</button>
+      </div>
+    </section>
+
+    <section id="emergencia" class="emergencia" hidden></section>
+
+    <div id="carga" class="carga" role="status" aria-label="Cargando VHS Mixtape">
+      <canvas id="intro" class="intro" aria-hidden="true"></canvas>
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "principal": "instagram",
+  "redes": [
+    {
+      "id": "instagram",
+      "nombre": "Instagram",
+      "usuario": "@sevsevillano",
+      "url": "https://www.instagram.com/sevsevillano/"
+    },
+    {
+      "id": "spotify",
+      "nombre": "Spotify",
+      "usuario": "Sevillano",
+      "url": "https://open.spotify.com/artist/7vsxkAxammWzCOYFU5L0R8"
+    },
+    {
+      "id": "soundcloud",
+      "nombre": "SoundCloud",
+      "usuario": "",
+      "url": "https://soundcloud.com/user-217929714"
+    },
+    {
+      "id": "tiktok",
+      "nombre": "TikTok",
+      "usuario": "@seviiiano",
+      "url": "https://www.tiktok.com/@seviiiano"
+    }
+  ],
+  "email": "",
+  "sobreMi": [
+    "Mi nombre es Sevillano y soy un productor, artista y DJ español, más específicamente salmantino, que está estudiando en Granada en estos momentos. En mi historial como DJ aparecen algunas fechas remarcadas como el set en Sala Potemkin en Salamanca o el set en Casa Pepa en Madrid, entre otros.",
+    "Mi objetivo en la música es disfrutar de ella y hacer que otros disfruten de mi arte, tanto como cantante como de DJ.",
+    "Sobre esta mixtape: 14 remixes, 14 escenografías, hecha con mucho cariño y para la comunidad. Todos los tracks son descargables completamente gratis, en MP3 320 y en WAV.",
+    "Agradecería que, si te ha gustado mi trabajo, pudieras ver otras cosas que he hecho y me siguieras en mis redes sociales para no perderte nuevos proyectos :)"
+  ]
+}

@@ -1,0 +1,22 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# la portada y el manifiesto se pueden guardar un par de minutos: asi no se pide al servidor
+# en cada visita y un fallo suyo no tumba la pagina
+/
+  Cache-Control: public, max-age=120
+/index.html
+  Cache-Control: public, max-age=120
+/site.webmanifest
+  Cache-Control: public, max-age=3600
+/robots.txt
+  Cache-Control: public, max-age=3600
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
