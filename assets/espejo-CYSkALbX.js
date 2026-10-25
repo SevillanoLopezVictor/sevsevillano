@@ -23,4 +23,6 @@
       transform: translateX(-50%); max-width: calc(100% - 32px); padding: 7px 14px; border-radius: 3px;
       background: rgba(8, 10, 20, 0.82); border: 1px solid rgba(255, 196, 90, 0.55); color: #ffe2a8;
       font: 11px/1.35 system-ui, sans-serif; letter-spacing: 0.04em; text-align: center; pointer-events: none; }
-  `,document.head.append(e);let t=document.createElement(`p`);t.className=`aviso-espejo`,t.setAttribute(`role`,`status`),t.textContent=`Estamos teniendo dificultades con el servidor: por ahora solo se puede descargar en MP3.`,document.body.append(t)}function m(e=`./`){}export{l as i,f as n,m as r,p as t};
+    .nota-solo-mp3 { margin: 0 0 4px; padding: 6px 10px; border: 1px solid rgba(255, 196, 90, 0.5);
+      color: #ffd890; font: 11px/1.35 system-ui, sans-serif; letter-spacing: 0.06em; }
+  `,document.head.append(e);let t=document.createElement(`p`);t.className=`aviso-espejo`,t.setAttribute(`role`,`status`),t.textContent=`Estamos teniendo dificultades con el servidor: por ahora solo se puede descargar en MP3.`,document.body.append(t);for(let e of[`#ficha-formatos`,`#pack`,`#mixtape`]){let t=document.querySelector(e);if(!t)continue;let n=document.createElement(`p`);n.className=`nota-solo-mp3`,n.textContent=`Por el momento solo está disponible en MP3.`;let r=t.querySelector(`h2`);r?r.after(n):t.prepend(n)}}function m(e=`./`){}export{l as i,f as n,m as r,p as t};
